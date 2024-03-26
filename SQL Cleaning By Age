@@ -1,0 +1,16 @@
+SELECT age,
+CASE 
+WHEN age<20 THEN '1'
+WHEN (age<20 and age >39)Then '2'
+WHEN (age<40 AND age>59) THEN '3'
+ELse '4'
+END as age_bracket
+
+FROM`bigquery-public-data.ml_datasets.census_adult_income`;
+
+
+
+
+
+SELECT*
+FROM`bigquery-public-data.ml_datasets.census_adult_income` ;
