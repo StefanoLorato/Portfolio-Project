@@ -1,0 +1,197 @@
+
+select
+DATE_DIFF(MAX(date), MIN(date), DAY) AS days_passed
+FROM `magnetic-math-398322.Final_Exercise.match`
+
+
+#4 
+
+select distinct a.season, a.league_id,b.name, b.id,
+MAX(home_team_goal) AS MaxHomeGoals,
+MIN(home_team_goal) AS MinHomeGoals,
+AVG(home_team_goal)AS AvgHomeGoals,
+SUM(home_team_goal) AS SumHomeGoals,
+SUM(away_team_goal) as Sum_Away_Goals,
+sum(home_team_goal)+sum(away_team_goal) as total_goal,
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.leagues`b
+on a.id=b.id
+group by season, a.league_id , b.name, b.id 
+order by season, a.league_id ,b.name, b.id desc
+
+
+with rag_season as (
+select distinct a.season, a.league_id,b.name, b.id,
+MAX(home_team_goal) AS MaxHomeGoals,
+MIN(home_team_goal) AS MinHomeGoals,
+AVG(home_team_goal)AS AvgHomeGoals,
+SUM(home_team_goal) AS SumHomeGoals,
+sum(home_team_goal)+sum(away_team_goal) as total_goal,
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.leagues`b
+on a.id=b.id
+group by season, a.league_id , b.name, b.id
+order by season, a.league_id ,b.name, b.id desc
+)
+select season,league_id ,name,rag_season.MaxHomeGoals,rag_season.MinHomeGoals,
+((rag_season.MaxHomeGoals)+(rag_season.MinHomeGoals)/2) as mid_range
+from rag_season
+group by season ,league_id ,name,rag_season.MaxHomeGoals,rag_season.MinHomeGoals
+order by season, name desc
+
+
+
+
+°5 Exercise 
+
+select distinct season,
+count(match_api_id) as Total_Match
+FROM `magnetic-math-398322.Final_Exercise.match`
+group by season
+There are 8 unique seasons there are in the Match table. 
+
+
+select distinct season, league_id,b.name,
+count(match_api_id) as Total_Match
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.leagues`b
+on a.id=b.id
+group by season , league_id, b.name
+order by league_id 
+
+
+
+
+6°
+SELECT distinct player_api_id,player_name,id,
+avg((weight)/ 2.205) as kg_weight,
+avg((height)/100) as m_height,
+avg((weight/2.205)/POwer(height/100,2)) as BMI
+FROM `magnetic-math-398322.Final_Exercise.player`
+group by player_api_id, player_name,id
+order by player_name
+
+
+
+select distinct player_api_id,player_name,id,BMI
+from
+(
+select distinct player_api_id,player_name,id,
+avg((weight)/ 2.205) as kg_weight,
+avg((height)/100) as m_height,
+avg((weight/2.205)/POwer(height/100,2)) as BMI
+FROM `magnetic-math-398322.Final_Exercise.player`
+group by player_api_id, player_name,id
+order by player_name desc)
+where BMI >=18.5 and BMI<= 24.9
+order by player_name, BMI>18.5 desc, BMI<24.9 desc
+
+
+7
+select distinct player_api_id,player_name,id,BMI
+from
+(
+select distinct player_api_id,player_name,id,
+avg((weight)/ 2.205) as kg_weight,
+avg((height)/100) as m_height,
+avg((weight/2.205)/POwer(height/100,2)) as BMI
+FROM `magnetic-math-398322.Final_Exercise.player`
+group by player_api_id, player_name,id
+order by player_name desc)
+where BMI> 24.9 or BMI<18.5
+order by player_name,BMI,id desc
+
+
+
+8
+
+
+With Recent as(
+select distinct season, b.team_long_name, 
+sum(home_team_goal) as home,
+sum(away_team_goal) as away,
+sum(home_team_goal)+ sum(away_team_goal) as total_goal
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.team` b
+on a.home_team_api_id= b.team_api_id
+where season like '2015%'
+group by season, b.team_long_name
+order by season)
+select distinct season, team_long_name, Recent.total_goal,Recent.home,Recent.away,
+from Recent
+order by season,Recent.total_goal desc, Recent.home,Recent.away
+
+9
+With Final as(
+  select season,  team_long_name,
+Sum(home_team_goal)+sum(away_team_goal) as Total_goals
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.team` b
+on a.id= b.id
+group by season, team_long_name
+order by season)
+select season, team_long_name, Final.Total_goals,
+RANK() OVER (PARTITION BY season ORDER BY Final.Total_goals DESC) AS ranking
+from Final
+group by  season ,team_long_name ,Final.Total_goals
+order by season
+
+
+With Free as (
+   select season, team_long_name,total_goal,
+   rank() over (partition by season order by total_goal desc) as Filter
+   from
+   (
+
+select distinct season, b.team_long_name, 
+sum(home_team_goal) as home,
+sum(away_team_goal) as away,
+sum(home_team_goal)+ sum(away_team_goal) as total_goal
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.team` b
+on a.home_team_api_id= b.team_api_id
+group by season, b.team_long_name
+order by season)
+order by season )
+select season , team_long_name, Free.total_goal
+from Free 
+where FILTER =1
+order by season ,Free.total_goal
+
+
+10 
+Create Table `Final_Exercise.TopScored ` as 
+
+With Recent as(
+select distinct season, b.team_long_name, 
+sum(home_team_goal) as home,
+sum(away_team_goal) as away,
+sum(home_team_goal)+ sum(away_team_goal) as total_goal
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.team` b
+on a.home_team_api_id= b.team_api_id
+where season like '2015%'
+group by season, b.team_long_name
+order by season)
+select distinct season, team_long_name, Recent.total_goal,Recent.home,Recent.away,
+from Recent
+order by season,Recent.total_goal desc, Recent.home,Recent.away
+limit 10
+
+
+
+
+
+with total as
+(select distinct season, team_long_name, team_short_name, away_team_goal,
+sum(home_team_goal)+sum(away_team_goal) as total_goals,
+round (10*(10-1)/2) as total_combination
+FROM `magnetic-math-398322.Final_Exercise.match` a
+left join `magnetic-math-398322.Final_Exercise.team` b
+on a.home_team_api_id= b.team_api_id
+where season like "2015%"
+group by season,team_long_name, team_short_name,away_team_goal
+order by season )
+select total.total_combination
+from total
+group by total.total_combination
