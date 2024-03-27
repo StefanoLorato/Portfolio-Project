@@ -1,4 +1,4 @@
-
+--sql 
 select
 DATE_DIFF(MAX(date), MIN(date), DAY) AS days_passed
 FROM `magnetic-math-398322.Final_Exercise.match`
