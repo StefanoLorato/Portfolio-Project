@@ -5,5 +5,5 @@
 
 
 - [x] **SQL & Tableau** - 
-*See on Tableau Public:* **[Dashboard]()**<br />
+*See on Tableau Public:* **[Dashboard](https://public.tableau.com/app/profile/stefano.lorato/vizzes)**<br />
 *Review the Data Exploration SQL Script:* **[HERE]()**<br />
