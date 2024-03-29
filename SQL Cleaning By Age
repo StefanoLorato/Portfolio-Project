@@ -8,9 +8,3 @@ END as age_bracket
 
 FROM`bigquery-public-data.ml_datasets.census_adult_income`;
 
-
-
-
-
-SELECT*
-FROM`bigquery-public-data.ml_datasets.census_adult_income` ;
