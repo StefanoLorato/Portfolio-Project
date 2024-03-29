@@ -4,7 +4,7 @@ DATE_DIFF(MAX(date), MIN(date), DAY) AS days_passed
 FROM `magnetic-math-398322.Final_Exercise.match`
 
 
-#4 
+--To model and visualize the team with the most goals
 
 select distinct a.season, a.league_id,b.name, b.id,
 MAX(home_team_goal) AS MaxHomeGoals,
@@ -87,7 +87,7 @@ where BMI >=18.5 and BMI<= 24.9
 order by player_name, BMI>18.5 desc, BMI<24.9 desc
 
 
-7
+
 select distinct player_api_id,player_name,id,BMI
 from
 (
@@ -159,7 +159,7 @@ where FILTER =1
 order by season ,Free.total_goal
 
 
-10 
+--Model and visualize the team with the most goals in the last season
 Create Table `Final_Exercise.TopScored ` as 
 
 With Recent as(
