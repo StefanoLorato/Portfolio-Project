@@ -42,7 +42,7 @@ order by season, name desc
 
 
 
-°5 Exercise 
+--Cleaning for see only unique seasons
 
 select distinct season,
 count(match_api_id) as Total_Match
@@ -62,7 +62,7 @@ order by league_id
 
 
 
-6°
+--Analysis for only player have a BMI well
 SELECT distinct player_api_id,player_name,id,
 avg((weight)/ 2.205) as kg_weight,
 avg((height)/100) as m_height,
