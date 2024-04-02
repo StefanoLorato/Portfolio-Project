@@ -9,7 +9,7 @@
 *Review the Data Exploration SQL Script:* **[HERE](https://github.com/Elmatador0007/Portfolio-Project/blob/main/SQL%20-%20Data%20Exploration.sql)**<br />
 
 - [x] **SQL** - 
-  - COVID-19 Dataset: Data Exploration  <br />
+- COVID-19 Dataset: Data Exploration  <br />
 *Review the SQL Script:* **[HERE](https://github.com/Elmatador0007/Portfolio-Project/blob/main/SQL%20-%20Data%20Exploration.sql)**<br />
 
 - Cleaning by age : Data Cleaning <br />
@@ -21,7 +21,9 @@
 
 - [x] **Python** - 
   - Movies Industry Dataset: Exploratory Data Analysis Project <br />
-*Read the complete Project Analysis in Markdown:* **[HERE](https://github.com/PriyankaJhaTheAnalyst/Python_MoviesIndustry_EDA/blob/main/README.md)**<br />
+*Read the complete Project Analysis in Markdown:* **[HERE](https://github.com/Elmatador0007/Portfolio-Project/blob/main/PYTHON%20-%20Project%20About%20Movie%20Industry.ipynb)**<br />
+  - Probabilty Distrbuition : Exploratory Data Analysis Project <br />
+*Read the complete Project Analysis in Markdown:* **[HERE](https://github.com/Elmatador0007/Portfolio-Project/blob/main/Python%20-%20Probability%20Distribution.ipynb)**<br />
 
 
 
@@ -31,7 +33,7 @@
 
 - Global GDP Maps: https://public.tableau.com/views/MunicipalityDashboard/Municipality?:language=en-GB&:display_count=n&:origin=viz_share_link
 
-![Global GDP Maps](https://github.com/Elmatador0007/Portfolio-Project/issues/6)  
+![Global GDP Maps](Screenshot 2024-03-22 211626.png)  
 
 - Energy Global Usage : https://public.tableau.com/app/profile/stefano.lorato/viz/GlobalEnergyUsage20002012/Dashboard1
 ![Energy Global Usage ]()  
