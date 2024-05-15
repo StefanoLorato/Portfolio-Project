@@ -14,7 +14,7 @@ Total Cases vs Total Deaths*/
 select location , `date` ,total_cases , total_deaths , 
 	(total_cases/population)*100 as death_percentage
 from coviddeaths_csv 
-where location = 'Afghanistan'
+where location = 'Italy'
 order by 1 ,2
 
 --------------------------------------------------------------------------------------------------------------------------
