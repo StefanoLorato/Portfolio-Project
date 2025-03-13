@@ -4,7 +4,7 @@
 
 
 
-- [x] **SQL & Tableau** - 
+- [x] ** Tableau** - 
 *See on Tableau Public:* **[Dashboard](https://public.tableau.com/app/profile/stefano.lorato/vizzes)**<br />
 *Review the Data Exploration SQL Script:* **[HERE](https://github.com/Elmatador0007/Portfolio-Project/blob/main/SQL%20-%20Data%20Exploration.sql)**<br />
 
